@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Container,
   Area,
@@ -22,6 +22,18 @@ function App() {
   const [data, setData] = useState([]);
   const [fileName, setFileName] = useState("Alfabética")
   const fileRef = useRef(null)
+
+  // useEffect(() => {
+  //   const capTure = async () => {
+  //     try {
+  //       const teste = await axios.post("http://localhost:5000/")
+  //       console.log(teste)
+  //     } catch (err) {
+  //       console.log(err)
+  //     }
+  //   }
+  //   capTure()
+  // }, [])
 
   const handleSubmit = () => {
     if (!fileCsv) {
