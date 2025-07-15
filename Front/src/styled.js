@@ -108,25 +108,27 @@ export const Button = styled.button`
 
 export const BoxLogs = styled.div`
     width: 90%;
-    height: 99%;
-    display: flex;
+    height: 100%;
     background-color:#fff;
-    flex-direction: column;
-    align-items: center;
     border-right: 1px solid #D9D9D9;
-    gap: 4px;
-    padding: 3px;
 
     h4{
         font-size: 7pt;
         color: #343D34;
         margin: 0;
+        text-align: center;
     }
 
     section{
-        height: 300px;
-        border: 1px solid red;
-        overflow-y:scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+   
+        gap: 4px;
+        padding: 3px;
+        width: 99%;
+        height: 97%;
+        overflow-y: auto;
     }
 `;
 
@@ -134,7 +136,7 @@ export const Line = styled.div`
     width: 99%;
     height: 25px;
     display: flex;
-    background-color:#D9D9D9;
+    background-color:#343D34;
     color: #fff;
     border-radius: 5px;
     padding-left: 4px;

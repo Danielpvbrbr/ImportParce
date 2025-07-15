@@ -32,16 +32,32 @@ function App() {
     const formData = new FormData();
     formData.append("file", fileCsv);
 
+    setPerc(0);
+    setData([]);
+
+    let fakeProgress = 0;
+    const interval = setInterval(() => {
+      fakeProgress += 1;
+      setPerc(prev => {
+        if (prev < 95) return prev + 1;
+        return prev;
+      });
+    }, 100);
+
     axios.post("http://localhost:5000/import", formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
       .then(response => {
-        setData(response.data.logData)
+        clearInterval(interval);
+        setPerc(100);
+        setData(response.data.logData);
         console.log(response.data.logData);
       })
       .catch(error => {
+        clearInterval(interval);
+        setPerc(0);
         console.error("Erro ao enviar o arquivo:", error);
         alert("Erro ao enviar o arquivo. Verifique o console.");
       });
@@ -94,9 +110,12 @@ function App() {
           </BoxAnexo>
           <BoxLogs>
             <h4>REGISTRO DE LOGS</h4>
-            {data?.mensagens?.map((v, i) =>
-              <Line>Paciente {"Daniel do nascimento1"} adicionado com sucesso no quarto {"10"}</Line>
-            )}
+            <section>
+              {data?.mensagens?.map((v, i) =>
+                <Line key={i}>{v}</Line>
+              )}
+            </section>
+
           </BoxLogs>
         </Box>
       </Area>
