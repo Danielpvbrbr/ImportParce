@@ -14,7 +14,7 @@ export const Area = styled.div`
     height: 90%;
     background-color: #D9D9D9;
     border-radius:1rem;
-
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 6%);
     h4{
         text-align: end;
         font-size: 7pt;
@@ -59,7 +59,8 @@ export const BoxAnexo = styled.div`
 export const Anexo = styled.div`
     width: 280px;
     height: 190px;
-    background-color:#fff;
+    background-color:#f1f1f1;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 30%);
     border-radius: 5px;
     margin-top: 6px;
     display: flex;
@@ -93,13 +94,14 @@ export const Progress = styled.div`
     display: flex;
     justify-content: center;
     align-items: end;
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 30%);
 `;
 
 export const Percent = styled.div`
     width: 100%;
     height: ${val => val.Percent}%;
     background-color:${el => el.color};
-    border-radius: 5px;
+    border-radius: 4px;
     margin-top: 8px;
 
     p{
@@ -111,6 +113,7 @@ export const Button = styled.button`
     width: 95%;
     height: 40px;
     background-color:${el => el.color};
+    box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 30%);
     margin-top: 8px;
     border-radius: 5px;
     margin-bottom: 6px;

@@ -81,14 +81,13 @@ function App() {
     const file = e.target.files[0];
     if (!file) return;
     setPerc(0);
-    setIsConn({ conn: false, data: [] })
     const fName = file.name.toLowerCase();
 
     if (!fName.includes("alfabética")) {
       alert("Erro: Arquivo inválido");
       return;
     }
-
+    setData([]);
     setFileName(fName)
     setFileCsv(file)
   };
