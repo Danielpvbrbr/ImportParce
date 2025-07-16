@@ -68,6 +68,10 @@ function App() {
         clearInterval(interval);
         setPerc(100);
         setData(response.data.logData);
+
+        setTimeout(() => {
+          window.open("http://localhost:8078/", "_blank");
+        }, 2000);
       })
       .catch(error => {
         clearInterval(interval);
@@ -123,14 +127,17 @@ function App() {
               color={perc === 100 ? "#0BFF1B" : "#fd4a03"}> {perc == 100 ? "Importado" : "Importar"}</Button>
           </BoxAnexo>
           <BoxLogs>
-            {data?.mensagens?.length  > 0 ?
+            {data?.mensagens?.length > 0 ?
               <section>
                 {data?.mensagens?.map((v, i) =>
                   <Line key={i}>{v}</Line>
                 )}
               </section>
               :
-              <h4>REGISTRO DE LOGS</h4>
+              <span>
+                <h4>REGISTRO DE LOGS</h4>
+                <h5>{"v 2.0.0"}</h5>
+              </span>
             }
           </BoxLogs>
         </Box>

@@ -15,6 +15,7 @@ export const Area = styled.div`
     background-color: #D9D9D9;
     border-radius:1rem;
     box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 6%);
+
     h4{
         text-align: end;
         font-size: 7pt;
@@ -23,6 +24,7 @@ export const Area = styled.div`
         margin-top:7px;
         margin-right: 10px;
     }
+        
 `;
 
 export const HeaderArea = styled.div`
@@ -44,6 +46,7 @@ export const Box = styled.div`
     height: 90%;
     display: flex;
     justify-content: center;
+  
 `;
 
 export const BoxAnexo = styled.div`
@@ -125,13 +128,13 @@ export const Button = styled.button`
 export const BoxLogs = styled.div`
     width: 90%;
     height: 100%;
-    background-color:#fff;
+    background-color:#f1f1f1;
     border-right: 1px solid #D9D9D9;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    h4{
+    span h4{
         font-size: 15pt;
         color: #343D34;
         margin: 0;
@@ -139,6 +142,13 @@ export const BoxLogs = styled.div`
         text-align: center;
     }
 
+    span h5{
+        font-size: 8pt;
+        color: #343D34;
+        margin: 0;
+        opacity: 0.5;
+        text-align: center;
+    }
     section{
         display: flex;
         flex-direction: column;
