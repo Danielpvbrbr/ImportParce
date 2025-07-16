@@ -123,12 +123,15 @@ function App() {
               color={perc === 100 ? "#0BFF1B" : "#fd4a03"}> {perc == 100 ? "Importado" : "Importar"}</Button>
           </BoxAnexo>
           <BoxLogs>
-            <h4>REGISTRO DE LOGS</h4>
-            <section>
-              {data?.mensagens?.map((v, i) =>
-                <Line key={i}>{v}</Line>
-              )}
-            </section>
+            {data?.mensagens?.length  > 0 ?
+              <section>
+                {data?.mensagens?.map((v, i) =>
+                  <Line key={i}>{v}</Line>
+                )}
+              </section>
+              :
+              <h4>REGISTRO DE LOGS</h4>
+            }
           </BoxLogs>
         </Box>
         <h4 style={{
