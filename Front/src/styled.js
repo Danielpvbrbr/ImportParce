@@ -14,6 +14,15 @@ export const Area = styled.div`
     height: 90%;
     background-color: #D9D9D9;
     border-radius:1rem;
+
+    h4{
+        text-align: end;
+        font-size: 7pt;
+        margin: 0;
+        font-weight: 400;
+        margin-top:7px;
+        margin-right: 10px;
+    }
 `;
 
 export const HeaderArea = styled.div`
@@ -99,11 +108,15 @@ export const Percent = styled.div`
 `;
 
 export const Button = styled.button`
-    width: 100%;
+    width: 95%;
     height: 40px;
     background-color:${el => el.color};
     margin-top: 8px;
-    border-radius: 0;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 `;
 
 export const BoxLogs = styled.div`

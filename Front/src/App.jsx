@@ -13,27 +13,30 @@ import {
   Line
 } from './styled'
 
-
 import axios from 'axios'
 
 function App() {
+  const API = "http://localhost:5000"
   const [perc, setPerc] = useState(0)
   const [fileCsv, setFileCsv] = useState(null);
   const [data, setData] = useState([]);
-  const [fileName, setFileName] = useState("Alfabética")
+  const [fileName, setFileName] = useState("Somente Alfabética")
+  const [isConn, setIsConn] = useState({ conn: false, data: [] })
   const fileRef = useRef(null)
 
-  // useEffect(() => {
-  //   const capTure = async () => {
-  //     try {
-  //       const teste = await axios.post("http://localhost:5000/")
-  //       console.log(teste)
-  //     } catch (err) {
-  //       console.log(err)
-  //     }
-  //   }
-  //   capTure()
-  // }, [])
+  useEffect(() => {
+    const capTure = async () => {
+      try {
+        const res = await axios.get(`${API}/conn`)
+        setIsConn({ conn: true, data: res.data.data })
+        //console.log(res.data)
+      } catch (err) {
+        setIsConn({ conn: false, data: [] })
+        console.log(err)
+      }
+    }
+    capTure()
+  }, [])
 
   const handleSubmit = () => {
     if (!fileCsv) {
@@ -56,7 +59,7 @@ function App() {
       });
     }, 100);
 
-    axios.post("http://localhost:5000/import", formData, {
+    axios.post(`${API}/import`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -65,7 +68,6 @@ function App() {
         clearInterval(interval);
         setPerc(100);
         setData(response.data.logData);
-        console.log(response.data.logData);
       })
       .catch(error => {
         clearInterval(interval);
@@ -78,17 +80,18 @@ function App() {
   const handleColet = (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    setPerc(0);
+    setIsConn({ conn: false, data: [] })
     const fName = file.name.toLowerCase();
-    setFileName(fName)
 
     if (!fName.includes("alfabética")) {
       alert("Erro: Arquivo inválido");
       return;
     }
 
+    setFileName(fName)
     setFileCsv(file)
   };
-
 
   return (
     <Container className="read-the-docs">
@@ -100,7 +103,7 @@ function App() {
           <BoxAnexo>
             <Anexo onClick={() => fileRef.current.click()}>
               <section>
-                <p>{fileName}</p>
+                <p style={{ color: '#fd4a03' }}>{fileName}</p>
                 <p>Buscar arquivo</p>
               </section>
             </Anexo>
@@ -118,7 +121,7 @@ function App() {
             />
             <Button
               onClick={handleSubmit}
-              color={perc === 100 ? "#0BFF1B" : "#fd4a03"}>Enviar</Button>
+              color={perc === 100 ? "#0BFF1B" : "#fd4a03"}> {perc == 100 ? "Importado" : "Importar"}</Button>
           </BoxAnexo>
           <BoxLogs>
             <h4>REGISTRO DE LOGS</h4>
@@ -127,10 +130,15 @@ function App() {
                 <Line key={i}>{v}</Line>
               )}
             </section>
-
           </BoxLogs>
         </Box>
+        <h4 style={{
+          color: isConn.conn ? '#15c70c' : '#fd4a03'
+        }}>
+          {isConn?.conn ? `🟢 Conectado ${isConn?.data?.FANTASIA} ` : "🔴 Reconectando... "}
+        </h4>
       </Area>
+
     </Container>
   )
 }
